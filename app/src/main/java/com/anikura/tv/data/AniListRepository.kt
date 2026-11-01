@@ -41,8 +41,8 @@ class AniListRepository {
         if (search.isNotBlank()) args += "search: ${JSONObject.quote(search.trim())}"
         if (!genre.isNullOrBlank()) args += "genre_in: [${JSONObject.quote(genre)}]"
         if (year != null && year in 1940..2100) args += "seasonYear: $year"
-        if (format in allowedFormats) args += "format: $format"
-        if (status in allowedStatuses) args += "status: $status"
+        if (format != null && format in allowedFormats) args += "format: $format"
+        if (status != null && status in allowedStatuses) args += "status: $status"
         if (ids.isNotEmpty()) args += "id_in: [${ids.take(50).joinToString(",")}]"
         args += "sort: [${if (sort in allowedSorts) sort else "TRENDING_DESC"}]"
 
